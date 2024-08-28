@@ -3,7 +3,8 @@ from django.urls import path, include
 from .views import user_detail_view
 from .views import user_redirect_view
 from .views import user_update_view
-from parcel_tracking.users.api.views import CustomResetPasswordConfirmView
+from parcel_tracking.users.api.views import CustomResetPasswordConfirmView, CustomLoginView
+
 
 from dj_rest_auth.views import LoginView, LogoutView, PasswordChangeView
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -14,7 +15,7 @@ urlpatterns = [
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
     path("<int:pk>/", view=user_detail_view, name="detail"),
-    path("login/", LoginView.as_view(), name="login"),
+    path("login/", CustomLoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("registration/", include("dj_rest_auth.registration.urls")),

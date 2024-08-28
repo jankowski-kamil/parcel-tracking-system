@@ -327,15 +327,14 @@ SOCIALACCOUNT_FORMS = {"signup": "parcel_tracking.users.forms.UserSocialSignupFo
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": True,
+    'ROTATE_REFRESH_TOKENS': True
 }
 
 REST_AUTH = {
     "USE_JWT": True,
-    "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_COOKIE": "my-app-auth",
     "JWT_AUTH_REFRESH_COOKIE": "my-refresh-token",
-    "OLD_PASSWORD_FIELD_ENABLED": True,
+    "JWT_AUTH_HTTPONLY": True
 }
 
 

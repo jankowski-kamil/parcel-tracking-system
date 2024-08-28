@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django_rest_passwordreset.serializers import PasswordTokenSerializer
 
+
 from parcel_tracking.users.models import User
 
 
@@ -24,3 +25,5 @@ class PasswordResetConfirmSerializer(PasswordTokenSerializer):
             )
 
         return super().validate(data)
+
+

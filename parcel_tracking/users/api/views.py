@@ -6,6 +6,7 @@ from rest_framework.mixins import UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from django_rest_passwordreset.views import ResetPasswordConfirm
+from dj_rest_auth.views import LoginView
 
 from parcel_tracking.users.models import User
 
@@ -30,3 +31,11 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
 
 class CustomResetPasswordConfirmView(ResetPasswordConfirm):
     serializer_class = PasswordResetConfirmSerializer
+
+class CustomLoginView(LoginView):
+
+    def get_response(self):
+        original_message = super().get_response()
+        response = {"user": original_message.data['user']}
+        original_message.data = response
+        return original_message
