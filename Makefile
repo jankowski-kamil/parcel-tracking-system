@@ -29,7 +29,7 @@ createsuperuser:
 	$(RUN_MANAGE_PY) createsuperuser
 
 startapp:
-	$(DOCKER_RUN) bash -c "cd plant/ && python ../manage.py startapp $(app)"
+	$(DOCKER_RUN) bash -c "cd parcel_tracking/ && python ../manage.py startapp $(app)"
 
 shell:
 	$(DOCKER_COMPOSE) exec -it django bash

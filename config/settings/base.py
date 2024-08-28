@@ -88,6 +88,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "parcel_tracking.users",
+    "parcel_tracking.hub"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
