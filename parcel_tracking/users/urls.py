@@ -3,7 +3,10 @@ from django.urls import path, include
 from .views import user_detail_view
 from .views import user_redirect_view
 from .views import user_update_view
-from parcel_tracking.users.api.views import CustomResetPasswordConfirmView, CustomLoginView
+from parcel_tracking.users.api.views import (
+    CustomResetPasswordConfirmView,
+    CustomLoginView,
+)
 
 
 from dj_rest_auth.views import LoginView, LogoutView, PasswordChangeView

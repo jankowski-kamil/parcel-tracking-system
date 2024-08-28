@@ -13,8 +13,6 @@ from parcel_tracking.users.models import User
 from .serializers import UserSerializer, PasswordResetConfirmSerializer
 
 
-
-
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -29,13 +27,15 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
         serializer = UserSerializer(request.user, context={"request": request})
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
+
 class CustomResetPasswordConfirmView(ResetPasswordConfirm):
     serializer_class = PasswordResetConfirmSerializer
+
 
 class CustomLoginView(LoginView):
 
     def get_response(self):
         original_message = super().get_response()
-        response = {"user": original_message.data['user']}
+        response = {"user": original_message.data["user"]}
         original_message.data = response
         return original_message

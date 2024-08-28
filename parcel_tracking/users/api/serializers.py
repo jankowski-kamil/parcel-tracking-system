@@ -13,6 +13,8 @@ class UserSerializer(serializers.ModelSerializer[User]):
         extra_kwargs = {
             "url": {"view_name": "api:user-detail", "lookup_field": "pk"},
         }
+
+
 class PasswordResetConfirmSerializer(PasswordTokenSerializer):
     token = serializers.CharField()
     password = serializers.CharField(write_only=True)
@@ -25,5 +27,3 @@ class PasswordResetConfirmSerializer(PasswordTokenSerializer):
             )
 
         return super().validate(data)
-
-
