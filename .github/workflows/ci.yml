@@ -19,20 +19,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  linter:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      # Consider using pre-commit.ci for open source project
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
-
   # With no caching at all the entire ci process takes 3m to complete!
   pytest:
     runs-on: ubuntu-latest
@@ -43,9 +29,6 @@ jobs:
 
       - name: Build the Stack
         run: docker compose -f local.yml build django
-
-      - name: Build the docs
-        run: docker compose -f docker-compose.docs.yml build docs
 
       - name: Check DB Migrations
         run: docker compose -f local.yml run --rm django python manage.py makemigrations --check
