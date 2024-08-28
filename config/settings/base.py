@@ -84,7 +84,14 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "dj_rest_auth",
+    "django_rest_passwordreset",
+    "dj_rest_auth.registration",
+    "rest_framework_simplejwt",
 ]
+
+SITE_ID = 1
+REST_USE_JWT = True
 
 LOCAL_APPS = [
     "parcel_tracking.users",
@@ -124,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "parcel_tracking.users.validators.password_validator.PasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
@@ -306,7 +313,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_ADAPTER = "parcel_tracking.users.adapters.AccountAdapter"
 # https://docs.allauth.org/en/latest/account/forms.html
@@ -316,15 +323,30 @@ SOCIALACCOUNT_ADAPTER = "parcel_tracking.users.adapters.SocialAccountAdapter"
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
 SOCIALACCOUNT_FORMS = {"signup": "parcel_tracking.users.forms.UserSocialSignupForm"}
 
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+}
+
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_HTTPONLY": True,
+    "JWT_AUTH_COOKIE": "my-app-auth",
+    "JWT_AUTH_REFRESH_COOKIE": "my-refresh-token",
+    "OLD_PASSWORD_FIELD_ENABLED": True,
+}
+
+
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        # "rest_framework.authentication.TokenAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
-    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
