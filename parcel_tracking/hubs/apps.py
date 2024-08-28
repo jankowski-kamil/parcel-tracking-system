@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class HubConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'parcel_tracking.hub'
+    name = 'parcel_tracking.hubs'
