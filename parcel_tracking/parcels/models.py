@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.core.exceptions import ValidationError
 from parcel_tracking.users.models import User
@@ -73,3 +75,11 @@ class Parcel(models.Model):
     def clean(self):
         if self.courier and self.courier.role.name != "courier":
             raise ValidationError("The assigned user must have the role courier")
+
+
+class DamagedParcel(models.Model):
+    description = models.TextField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    parcel = models.ForeignKey(
+        Parcel, on_delete=models.CASCADE, related_name="damaged_records"
+    )

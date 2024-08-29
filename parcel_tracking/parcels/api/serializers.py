@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from parcel_tracking.parcels.models import ParcelAddress, ParcelSize, Parcel
+from parcel_tracking.parcels.models import (
+    ParcelAddress,
+    ParcelSize,
+    Parcel,
+    DamagedParcel,
+)
 
 
 class ParcelAddressSerializer(serializers.ModelSerializer):
@@ -25,3 +30,9 @@ class ParcelSerializer(serializers.ModelSerializer):
                 "The assigned user must have the role 'courier'."
             )
         return value
+
+
+class ParcelDamageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DamagedParcel
+        fields = ("description",)

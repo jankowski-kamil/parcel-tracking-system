@@ -1,5 +1,5 @@
 import pytest
-from .factories import ParcelSizeFactory, ParcelAddressFactory
+from .factories import ParcelSizeFactory, ParcelAddressFactory, ParcelFactory
 from django.urls import reverse
 
 
@@ -107,7 +107,9 @@ class TestHubsViewSet:
             "state": "Illinois",
             "zip": "62704",
         }
-        url = reverse("parcels:parcel-address-detail", kwargs={"pk": parcel_addresses[0].id})
+        url = reverse(
+            "parcels:parcel-address-detail", kwargs={"pk": parcel_addresses[0].id}
+        )
         response = api_client.patch(url, payload)
         assert response.status_code == 200
 
@@ -115,7 +117,9 @@ class TestHubsViewSet:
     def test_delete_parcel_address(self, api_client, user):
         api_client.force_authenticate(user=user)
         parcel_addresses = ParcelAddressFactory.create_batch(10)
-        url = reverse("parcels:parcel-address-detail", kwargs={"pk": parcel_addresses[0].id})
+        url = reverse(
+            "parcels:parcel-address-detail", kwargs={"pk": parcel_addresses[0].id}
+        )
         response = api_client.delete(url)
         assert response.status_code == 204
 
@@ -127,3 +131,5 @@ class TestHubsViewSet:
         response = api_client.get(url)
         assert response.status_code == 200
         assert len(response.data) == 0
+
+

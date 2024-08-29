@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from parcel_tracking.parcels.models import Parcel, ParcelSize, ParcelAddress
+from parcel_tracking.parcels.models import (
+    Parcel,
+    ParcelSize,
+    ParcelAddress,
+    DamagedParcel,
+)
 
 
 @admin.register(Parcel)
@@ -40,3 +45,8 @@ class ParcelAddressAdmin(admin.ModelAdmin):
     )
     search_fields = ("id", "name", "surname")
     list_filter = ("id", "name", "surname")
+
+
+@admin.register(DamagedParcel)
+class DamagedParcelRecordAdmin(admin.ModelAdmin):
+    list_display = ("parcel", "description", "created_at")
