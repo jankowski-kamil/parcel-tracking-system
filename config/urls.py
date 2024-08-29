@@ -45,6 +45,7 @@ urlpatterns += [
         name="api-docs",
     ),
     path("parcel-hubs/", include("parcel_tracking.hubs.urls")),
+    path("parcels/", include("parcel_tracking.parcels.urls")),
 ]
 
 if settings.DEBUG:
