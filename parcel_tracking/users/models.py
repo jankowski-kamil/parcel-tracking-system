@@ -5,8 +5,15 @@ from django.db.models import CharField
 from django.db.models import EmailField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
+from django.db import models
 from .managers import UserManager
+
+
+class Role(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractUser):
@@ -22,7 +29,9 @@ class User(AbstractUser):
     last_name = None  # type: ignore[assignment]
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore[assignment]
-
+    role = models.ForeignKey(
+        Role, on_delete=models.CASCADE, related_name="role_type", null=True, blank=True
+    )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

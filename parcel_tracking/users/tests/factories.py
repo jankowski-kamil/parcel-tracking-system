@@ -1,16 +1,24 @@
 from collections.abc import Sequence
 from typing import Any
 
-from factory import Faker, post_generation
+from factory import Faker, post_generation, SubFactory
 from factory.django import DjangoModelFactory
 
-from parcel_tracking.users.models import User
+from parcel_tracking.users.models import User, Role
+
+
+class RoleFactory(DjangoModelFactory):
+    name = "courier"
+
+    class Meta:
+        model = Role
 
 
 class UserFactory(DjangoModelFactory):
     email = Faker("email")
     name = Faker("name")
     is_staff = True
+    role = SubFactory(RoleFactory)
 
     @post_generation
     def password(
