@@ -15,6 +15,7 @@ class Role(models.Model):
     def __str__(self):
         return self.name
 
+
 class User(AbstractUser):
     """
     Default custom user model for parcel-tracking.
@@ -28,7 +29,9 @@ class User(AbstractUser):
     last_name = None  # type: ignore[assignment]
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore[assignment]
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name="role_type", null=True, blank=True)
+    role = models.ForeignKey(
+        Role, on_delete=models.CASCADE, related_name="role_type", null=True, blank=True
+    )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

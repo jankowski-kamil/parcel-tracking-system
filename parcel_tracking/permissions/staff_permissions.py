@@ -10,4 +10,4 @@ class IsStaff(BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return User.objects.get(pk=request.user.id).role.name != 'client'
+        return User.objects.get(pk=request.user.id).role.name != "client"

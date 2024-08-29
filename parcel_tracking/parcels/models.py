@@ -15,6 +15,7 @@ class ParcelAddress(models.Model):
     def __str__(self):
         return f"{self.street} - {self.city} - {self.state} - {self.zip}"
 
+
 class ParcelSize(models.Model):
     price = models.IntegerField()
     description = models.TextField(max_length=50)
@@ -24,6 +25,8 @@ class ParcelSize(models.Model):
 
     def __str__(self):
         return f"{self.description} - {self.price}"
+
+
 class Parcel(models.Model):
 
     class StatusParcel(models.TextChoices):
@@ -49,7 +52,20 @@ class Parcel(models.Model):
         max_length=100, choices=StatusParcel, default=StatusParcel.CREATED
     )
     address = models.ForeignKey(ParcelAddress, on_delete=models.CASCADE)
-    courier = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    courier = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="courier_name",
+    )
+    recipient = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="recipient_name",
+    )
 
     def __str__(self):
         return f"{self.content_description}"
@@ -57,10 +73,3 @@ class Parcel(models.Model):
     def clean(self):
         if self.courier and self.courier.role.name != "courier":
             raise ValidationError("The assigned user must have the role courier")
-
-
-
-
-
-
-

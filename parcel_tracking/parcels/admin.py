@@ -28,6 +28,15 @@ class ParcelSizeAdmin(admin.ModelAdmin):
 
 @admin.register(ParcelAddress)
 class ParcelAddressAdmin(admin.ModelAdmin):
-    list_display = ("id", "name","surname", "street", "city", "state", "zip", "country")
+    list_display = (
+        "id",
+        "name",
+        "surname",
+        "street",
+        "city",
+        "state",
+        "zip",
+        "country",
+    )
     search_fields = ("id", "name", "surname")
     list_filter = ("id", "name", "surname")
