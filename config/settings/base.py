@@ -96,6 +96,7 @@ REST_USE_JWT = True
 LOCAL_APPS = [
     "parcel_tracking.users",
     "parcel_tracking.hubs",
+    "parcel_tracking.parcels",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
