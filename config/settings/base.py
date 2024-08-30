@@ -88,6 +88,7 @@ THIRD_PARTY_APPS = [
     "django_rest_passwordreset",
     "dj_rest_auth.registration",
     "rest_framework_simplejwt",
+    "django_filters"
 ]
 
 SITE_ID = 1
