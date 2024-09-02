@@ -70,7 +70,9 @@ class Parcel(models.Model):
         blank=True,
         related_name="recipient_name",
     )
-    hub = models.ForeignKey(Hub, on_delete=models.CASCADE, blank=True, null=True, related_name="parcels_hub")
+    hub = models.ForeignKey(
+        Hub, on_delete=models.CASCADE, blank=True, null=True, related_name="parcels_hub"
+    )
 
     def __str__(self):
         return f"{self.content_description}"

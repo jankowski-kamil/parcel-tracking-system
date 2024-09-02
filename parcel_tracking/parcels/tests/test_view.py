@@ -131,5 +131,3 @@ class TestHubsViewSet:
         response = api_client.get(url)
         assert response.status_code == 200
         assert len(response.data) == 0
-
-

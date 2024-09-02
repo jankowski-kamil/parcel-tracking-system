@@ -66,4 +66,3 @@ class TestHubsViewSet:
         response = api_client.get(url)
         assert response.status_code == 200
         assert sorted_hubs[0].name == response.data[0]["name"]
-

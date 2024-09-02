@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('parcels', '0005_remove_damagedparcelrecord_package_id_and_more'),
+        ("parcels", "0005_remove_damagedparcelrecord_package_id_and_more"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='DamagedParcelRecord',
-            new_name='DamagedParcel',
+            old_name="DamagedParcelRecord",
+            new_name="DamagedParcel",
         ),
     ]
