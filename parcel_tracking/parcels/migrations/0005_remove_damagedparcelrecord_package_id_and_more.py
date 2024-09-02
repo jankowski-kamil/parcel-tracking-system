@@ -7,18 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('parcels', '0004_damagedparcelrecord'),
+        ("parcels", "0004_damagedparcelrecord"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='damagedparcelrecord',
-            name='package_id',
+            model_name="damagedparcelrecord",
+            name="package_id",
         ),
         migrations.AddField(
-            model_name='damagedparcelrecord',
-            name='parcel',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='damaged_records', to='parcels.parcel'),
+            model_name="damagedparcelrecord",
+            name="parcel",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="damaged_records",
+                to="parcels.parcel",
+            ),
             preserve_default=False,
         ),
     ]

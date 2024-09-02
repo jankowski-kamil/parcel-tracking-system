@@ -8,48 +8,100 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ParcelAddress',
+            name="ParcelAddress",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('surname', models.CharField(max_length=50)),
-                ('street', models.CharField(max_length=100)),
-                ('city', models.CharField(max_length=100)),
-                ('country', models.CharField(max_length=100)),
-                ('state', models.CharField(max_length=100)),
-                ('zip', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("surname", models.CharField(max_length=50)),
+                ("street", models.CharField(max_length=100)),
+                ("city", models.CharField(max_length=100)),
+                ("country", models.CharField(max_length=100)),
+                ("state", models.CharField(max_length=100)),
+                ("zip", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='ParcelSize',
+            name="ParcelSize",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.IntegerField()),
-                ('description', models.TextField(max_length=50)),
-                ('max_height', models.IntegerField()),
-                ('max_width', models.IntegerField()),
-                ('max_length', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.IntegerField()),
+                ("description", models.TextField(max_length=50)),
+                ("max_height", models.IntegerField()),
+                ("max_width", models.IntegerField()),
+                ("max_length", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='Parcel',
+            name="Parcel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content_description', models.TextField(blank=True, max_length=100)),
-                ('content_value', models.IntegerField(blank=True, null=True)),
-                ('weight', models.IntegerField()),
-                ('height', models.IntegerField()),
-                ('width', models.IntegerField()),
-                ('length', models.IntegerField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('CREATED', 'Created'), ('AWAITING_DISPATCH', 'Awaiting Dispatch'), ('DISPATCHED', 'Dispatched'), ('IN_TRANSIT', 'In Transit'), ('DELIVERED', 'Delivered'), ('FAILED_DELIVERING', 'Failed Delivering'), ('LOST', 'Lost'), ('DAMAGED', 'Damaged'), ('CANCELLED', 'Cancelled')], default='CREATED', max_length=100)),
-                ('address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='parcels.parceladdress')),
-                ('size', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='parcels.parcelsize')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content_description", models.TextField(blank=True, max_length=100)),
+                ("content_value", models.IntegerField(blank=True, null=True)),
+                ("weight", models.IntegerField()),
+                ("height", models.IntegerField()),
+                ("width", models.IntegerField()),
+                ("length", models.IntegerField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("CREATED", "Created"),
+                            ("AWAITING_DISPATCH", "Awaiting Dispatch"),
+                            ("DISPATCHED", "Dispatched"),
+                            ("IN_TRANSIT", "In Transit"),
+                            ("DELIVERED", "Delivered"),
+                            ("FAILED_DELIVERING", "Failed Delivering"),
+                            ("LOST", "Lost"),
+                            ("DAMAGED", "Damaged"),
+                            ("CANCELLED", "Cancelled"),
+                        ],
+                        default="CREATED",
+                        max_length=100,
+                    ),
+                ),
+                (
+                    "address",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="parcels.parceladdress",
+                    ),
+                ),
+                (
+                    "size",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="parcels.parcelsize",
+                    ),
+                ),
             ],
         ),
     ]
